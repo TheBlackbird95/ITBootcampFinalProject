@@ -31,7 +31,7 @@ public class HomePage {
     WebElement interactions;
 
     @FindBy (xpath = "/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[6]")
-    WebElement bookStoreApplication;
+    public WebElement bookStoreApplication;
 
     public void goToElements(){
         elements.click();

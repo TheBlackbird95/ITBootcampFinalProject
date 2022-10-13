@@ -27,6 +27,7 @@ public class Basic {
 //    public UploadAndDownloadPage uploadAndDownloadPage;
 //    public DynamicPropertiesPage dynamicPropertiesPage;
     public BrowserWindowsPage browserWindowsPage;
+    public BookStoreLoginPage bookStoreLoginPage;
 
     @BeforeSuite
     public void setUp() {
@@ -49,6 +50,7 @@ public class Basic {
 //        uploadAndDownloadPage = new UploadAndDownloadPage(driver, wdwait);
 //        dynamicPropertiesPage = new DynamicPropertiesPage(driver, wdwait);
         browserWindowsPage = new BrowserWindowsPage(driver, wdwait);
+        bookStoreLoginPage = new BookStoreLoginPage(driver, wdwait);
 
     }
 
@@ -76,7 +78,7 @@ public class Basic {
         return nijeTu;
     }
 
-    @BeforeMethod
+    @AfterMethod
     public void refresh(){
         driver.navigate().refresh();
     }
