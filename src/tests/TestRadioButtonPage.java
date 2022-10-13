@@ -32,6 +32,6 @@ public class TestRadioButtonPage extends Basic {
     public void no(){
         clickabilityWait(radioButtonPage.getNoButton());
         radioButtonPage.clickNo();
-        Assert.assertThrows(NoSuchElementException.class, ()->radioButtonPage.getResultText().isDisplayed());
+        Assert.assertThrows(NoSuchElementException.class, ()->radioButtonPage.getResultText().getText().contains("No"));
     }
 }

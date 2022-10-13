@@ -1,16 +1,11 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.Basic;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class TestBrowserWindowsPage extends Basic {
 
@@ -23,19 +18,30 @@ public class TestBrowserWindowsPage extends Basic {
     @Test
     public void newTab() {
         browserWindowsPage.clickTab();
-        Assert.assertTrue(driver.getWindowHandles().size() != 1, "It should be two tabs!");
+        Assert.assertEquals(driver.getWindowHandles().size(), 2, "It should be two tabs!");
         ArrayList<String> mySet = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(mySet.get(1));
         driver.close();
+        driver.switchTo().window(mySet.get(0));
     }
 
     @Test
     public void newWindow() {
         browserWindowsPage.clickNewWindow();
-        Assert.assertTrue(driver.getWindowHandles().size()!=1, "It should be two windows!");
+        Assert.assertEquals(driver.getWindowHandles().size(), 2, "It should be two windows!");
         ArrayList<String> mySet = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(mySet.get(1));
         driver.close();
+        driver.switchTo().window(mySet.get(0));
     }
 
+    @Test
+    public void newWindowMessage() throws InterruptedException {
+        browserWindowsPage.clickNewWindowMessage();
+        ArrayList<String> mySet = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(mySet.get(1));
+        Assert.assertTrue(driver.findElement(By.xpath("/html[1]/body[1]")).getText().contains("Knowledge increases by sharing but not by saving."));
+        driver.close();
+        Thread.sleep(2000);
+    }
 }
